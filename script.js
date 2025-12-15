@@ -17,8 +17,8 @@ async function checkweather(city) {
   console.log(data);
 
   if (data.cod === "404") {
-    document.querySelector(".error").style.display = "block";
-    document.querySelector(".weather").style.display = "none";
+    document.querySelector(".weather").classList.remove("active");
+    document.querySelector(".error").classList.add("active");
     document.querySelector(".error").innerHTML = data.message;
     return;
   }
@@ -33,16 +33,26 @@ async function checkweather(city) {
 
   if (data.weather[0].main === "Clouds") {
     weatherIcon.src = "images/clouds.png";
+    document.querySelector(".main-wrp").style.background =
+      "linear-gradient(135deg, #74ebd5, #9face6)";
   } else if (data.weather[0].main === "Clear") {
     weatherIcon.src = "images/clear.png";
+    document.querySelector(".main-wrp").style.background =
+      "linear-gradient(135deg, #ff9a9e, #fad0c4)";
   } else if (data.weather[0].main === "Rain") {
     weatherIcon.src = "images/rain.png";
+    document.querySelector(".main-wrp").style.background =
+      "linear-gradient(135deg, #5f9cff, #6b7cff)";
   } else if (data.weather[0].main === "Drizzle") {
     weatherIcon.src = "images/drizzle.png";
+    document.querySelector(".main-wrp").style.background =
+      "linear-gradient(135deg, #141e30, #243b55)";
   } else if (data.weather[0].main === "Mist") {
     weatherIcon.src = "images/mist.png";
+    document.querySelector(".main-wrp").style.background =
+      "linear-gradient(135deg, #89f7fe, #66a6ff)";
   }
 
-  document.querySelector(".weather").style.display = "block";
-  document.querySelector(".error").style.display = "none";
+  document.querySelector(".weather").classList.add("active");
+  document.querySelector(".error").classList.remove("active");
 }
